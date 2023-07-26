@@ -1,0 +1,17 @@
+# Use node 16 as the base image
+FROM node:16
+
+# Set the working directory to /tests
+WORKDIR /tests
+
+# Copy package.json and package-lock.json to the container
+COPY package*.json ./
+
+# Install test dependencies
+RUN npm install
+
+# Copy the rest of the test files
+COPY . .
+
+# Run the tests
+CMD [ "npm", "test" ]
